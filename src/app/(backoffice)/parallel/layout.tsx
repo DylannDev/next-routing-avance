@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import React from 'react'
 {
   /* 
@@ -6,18 +5,23 @@ import React from 'react'
   faire fonctionner nos routes parrallèles  
   */
 }
-export default async function Layout({children}: {children: React.ReactNode}) {
+export default async function Layout({
+  children,
+  admin,
+  editor,
+}: {
+  children: React.ReactNode
+  admin: React.ReactNode
+  editor: React.ReactNode
+}) {
+  const role = 'admin'
   return (
     <>
       <h2>Gestion Admin / Editor Layout</h2>
       <div className="m-6 flex flex-col">
-        {/* ⛏️ supprime ces 2 liens car ils ne seront pas utilisés */}
-        <Link href="/parallel/admin">admin</Link>
-        <Link href="/parallel/editor">editor</Link>
         {children}
-        {/* 🐶 affiche la route éditor  */}
-        {/* 🐶 affiche la route admin  */}
-
+        {editor}
+        {role === 'admin' ? admin : undefined}
         {/* 🐶 pense à bonus-1. 🚀 rendu conditionel  */}
         {/* 🐶 pense à bonus-2. 🚀 Loading  */}
       </div>
